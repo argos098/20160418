@@ -20,10 +20,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RadioButton
+            android:id="@+id/radio2"
             android:text="radio2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RadioButton
+            android:id="@+id/radio3"
             android:text="radio3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -33,6 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+            android:inputType="number"
+            android:hint="input here"
             android:id="@+id/myEditText"
             android:layout_width="200dp"
             android:layout_height="wrap_content" />
