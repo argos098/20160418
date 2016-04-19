@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /**
  * Created by a on 2016-04-19.
@@ -41,6 +42,16 @@ public class TestSqliteHandler {
 
     public void selsctAll(){
         db = helper.getWritableDatabase();
-        Cursor c = db.query("student", )
+        Cursor c = db.query("student", null, null, null, null, null, null);
+
+        while(c.moveToNext()){
+            int id = c.getInt(c.getColumnIndex("id"));
+            String name = c.getString(c.getColumnIndex("name"));
+            int age = c.getInt(c.getColumnIndex("age"));
+            String address = c.getString(c.getColumnIndex("address"));
+
+            Log.d("SQLite", "id : " + id + " name : " +
+                    name + " age : " + age + " address : " + address);
+        }
     }
 }
