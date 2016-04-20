@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 JSONObject obj = new JSONObject(s);
                 JSONArray contacts = obj.getJSONArray("contacts");
+                String res = "contacts : \n";
                 for(int i = 0; i<contacts.length(); i++){
                     JSONObject c = contacts.getJSONObject(i);
 
@@ -61,7 +63,12 @@ public class MainActivity extends AppCompatActivity {
                     String mobile = phone.getString("mobile");
                     String home = phone.getString("home");
                     String office = phone.getString("office");
+
+                    res += "id : " + id + "name : " + name + "email : " + email +
+                            "address : " + address + "gender : " + gender +
+                            "mobile : " + mobile + "home : " + home + "office : " + office;
                 }
+                textView.setText(res);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -73,10 +80,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        textView = (TextView) findViewById(R.id.textView);
 
         GetContacts task = new GetContacts();
         task.execute("http://api.androidhive.info/contacts/");
