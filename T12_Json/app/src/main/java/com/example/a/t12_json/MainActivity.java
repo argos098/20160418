@@ -44,12 +44,32 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+
+            try {
+                JSONObject obj = new JSONObject(s);
+                JSONArray contacts = obj.getJSONArray("contacts");
+                for(int i = 0; i<contacts.length(); i++){
+                    JSONObject c = contacts.getJSONObject(i);
+
+                    String id = c.getString("id");
+                    String name = c.getString("name");
+                    String email = c.getString("email");
+                    String address = c.getString("address");
+                    String gender = c.getString("gender");
+
+                    JSONObject phone = c.getJSONObject("phone");
+                    String mobile = phone.getString("mobile");
+                    String home = phone.getString("home");
+                    String office = phone.getString("office");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         protected String doInBackground(String... params) {
-            String strJson = getResponseString(params[0]);
-            return null;
+            return getResponseString(params[0]);
         }
     }
 
@@ -57,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        GetContacts task = new GetContacts();
+        task.execute("http://api.androidhive.info/contacts/");
 
         try {
             JSONArray array = new JSONArray(str);
