@@ -9,10 +9,41 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.a.t17_location.MainActivity">
 
+    <EditText
+        android:hint="address"
+        android:id="@+id/editName"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_below="@id/editName"
+        android:id="@+id/editLat"
+        android:hint="latitude"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_alignTop="@id/editLat"
+        android:layout_toRightOf="@id/editLat"
+        android:id="@+id/editLon"
+        android:hint="longitude"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_alignTop="@id/editLon"
+        android:onClick="onGeocodingClick"
+        android:layout_toRightOf="@id/editLon"
+        android:text="OK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_below="@id/editLat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TextView
         android:textSize="24dp"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+    </ScrollView>
 </RelativeLayout>
